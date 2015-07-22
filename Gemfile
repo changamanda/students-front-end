@@ -28,6 +28,12 @@ gem 'responders'
 gem 'faker'
 gem 'faraday'
 
+gem 'jasmine'
+gem 'jasmine-jquery-rails'
+
+gem 'launchy'
+gem 'selenium-webdriver'
+
 group :test do
   gem 'rspec-rails'
   gem 'capybara'

@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  showContainer('#index-container');
+  getStudents();
+  addListenerOnStudentLink();
+  addListenerOnBackLink();
+  addListenerOnCohortLink();
+  addSearchListener();
+});
