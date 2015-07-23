@@ -45,4 +45,45 @@ describe "AJAX" do
       expect(page).not_to have_content('Josh')
     end
   end
+
+  describe "getStudentsByQuery(query)" do
+    before(:each) do
+      visit '/'
+      page.execute_script("showContainer('#index-container')")
+      page.execute_script("getStudentsByQuery('a')")
+    end
+
+    it "makes a request to GET '/students?q=' + query and calls on listStudents() in the callback" do
+      expect(page).to have_content('Amanda')
+    end
+
+    it "empties the students list before calling on listStudents()" do
+      expect(page).not_to have_content('Josh')
+    end
+  end
+
+  describe "getStudentsForCohort(id)" do
+    it "makes a request to GET '/cohorts/' + id and calls on replaceCohortName() in the callback" do
+      visit '/'
+      id = Cohort.first.id
+      page.execute_script("showContainer('#cohort-container')")
+      page.execute_script("getCohort('#{id}')")      
+
+      expect(page).to have_content('Ruby-000')
+    end
+  end
+
+  describe "getStudentsForCohort(id)" do
+    it "makes a request to GET '/cohorts/' + id + '/students' and calls on listStudents() in the callback" do
+      visit '/'
+      id = Cohort.first.id
+      page.execute_script("showContainer('#cohort-container')") 
+      page.execute_script("getStudentsForCohort('#{id}')")
+
+      expect(page).to have_content('Amanda')
+      expect(page).to have_content('Josh')
+      expect(page).not_to have_content('Steven')
+      expect(page).not_to have_content('Danny')
+    end
+  end
 end
