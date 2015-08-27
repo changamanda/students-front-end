@@ -1,33 +1,25 @@
 'use strict'
 
 function showContainer(name){
-  $('#student-container').hide();
-  $('#cohort-container').hide();
-  $('#index-container').hide();
-  $(name).show();
+  // Write code here
 }
 
 function appendStudentLink(student, divName){
-  $(divName).append("<li><a class='student-link' href = '#' data-id = '" + student.id + "'>" + student.name + "</a></li>");
+  // Write code here
 }
 
 function listStudents(studentsArray, divName){
-  studentsArray.forEach(function(student){
-    appendStudentLink(student, divName);
-  });  
+  // Write code here
 }
 
 function showStudent(student){
-  $('#student-name').text(student.name);
-  $('#student-email').text("Email: " + student.email);
-  $('#student-cohort').html("Cohort: <a href = '#' id = 'cohort-link' data-id = '" + student.cohort.id + "'>" + student.cohort.name + "</a>");  
+  // Write code here
 }
 
 function resetIndex(){
-  $("#name-field").val("");
-  $("#name-field").keyup();  
+  // Write code here
 }
 
 function replaceCohortName(name){
-  $('#cohort-name').text(name);
+  // Write code here
 }
