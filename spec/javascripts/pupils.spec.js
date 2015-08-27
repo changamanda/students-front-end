@@ -4,28 +4,28 @@ describe("pupils.js", function() {
   });
 
   describe("showContainer(name)", function() {
-    it("will show index", function() {
+    it("hides all containers except for the argument", function() {
       showContainer('#index-container');
       expect($('#student-container')).not.toBeVisible();
       expect($('#cohort-container')).not.toBeVisible();
-      expect($('#index-container')).toBeVisible();
-    });
-
-    it("will show student", function() {
       showContainer('#student-container');
-      expect($('#student-container')).toBeVisible();
-      expect($('#cohort-container')).not.toBeVisible();
       expect($('#index-container')).not.toBeVisible();
-    });
-
-    it("will show cohort", function() {
+      expect($('#cohort-container')).not.toBeVisible();
       showContainer('#cohort-container');
       expect($('#student-container')).not.toBeVisible();
-      expect($('#cohort-container')).toBeVisible();
       expect($('#index-container')).not.toBeVisible();
     });
-  });
 
+    it("shows the container whose name is passed in as argument", function() {
+      showContainer('#index-container');
+      expect($('#index-container')).toBeVisible();
+      showContainer('#student-container');
+      expect($('#student-container')).toBeVisible();
+      showContainer('#cohort-container');
+      expect($('#cohort-container')).toBeVisible();
+    });
+  });
+  
   describe("appendStudentLink(student, divName)", function() {
     beforeEach(function() {
       showContainer('#index-container');
@@ -47,11 +47,11 @@ describe("pupils.js", function() {
       showContainer('#index-container');
       var students = [{cohort_id: 1, email: "newton.romaguera.phd@harber.name", id: 1, name: "Newton Romaguera PhD"}, {cohort_id: 1, email: "ankunding_brown@harris.biz", id: 2, name: "Brown Ankunding"}];
       listStudents(students, '#students-list');
-    }); 
+    });
 
     it("calls on appendStudentLink for each student in the array", function() {
       expect($('#students-list').text()).toEqual("Newton Romaguera PhDBrown Ankunding");
-    }); 
+    });
   });
 
   describe("showStudent(student)", function(){
@@ -90,7 +90,7 @@ describe("pupils.js", function() {
       resetIndex();
 
       expect($("#name-field").val()).toEqual("");
-    }); 
+    });
   });
 
   describe("replaceCohortName(name)", function(){
@@ -99,6 +99,6 @@ describe("pupils.js", function() {
       replaceCohortName('Ruby-000');
 
       expect($('#cohort-name').text()).toEqual('Ruby-000');
-    }); 
+    });
   });
 });
